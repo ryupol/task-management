@@ -3,12 +3,17 @@ import {
   createTaskService,
   updateTaskService,
   deleteTaskService,
-} from "../tasks.service";
-import TaskModel from "../task.schema";
-import { Task } from "../tasks.type";
+} from "../api/tasks/tasks.service";
+import TaskModel from "../api/tasks/task.schema";
+import { Task } from "../api/tasks/tasks.type";
 
-jest.mock("../task.schema");
+jest.mock("../api/tasks/task.schema");
+
 describe("Task Service", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  
   test("should get all tasks", async () => {
     // Given
     const mockResponse = {
