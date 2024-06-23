@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  task-management-server:
+    build: .
+    ports:
+      - '8080:8080'

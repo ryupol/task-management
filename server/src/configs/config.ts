@@ -1,5 +1,11 @@
-const APP_NAME = "task-management";
+import dotenv from "dotenv";
+dotenv.config();
+
 const ENV = process.env.NODE_ENV || "dev";
+const IS_PRODUCTION = process.env.ENV === "production";
+
+const APP_NAME = "task-management";
+
 const PORT = process.env.PORT || 8080;
 
 const MONGO_USER = process.env.MONGO_USER || "ryuguild";
@@ -15,4 +21,32 @@ const LOG_SAVE_LEVEL = process.env.LOG_SAVE_LEVEL || "debug";
 
 const BASE_PATH = process.cwd();
 
-export { PORT, MONGO_DB_URL, CLIENT_URL, LOG_SAVE_LEVEL, BASE_PATH, APP_NAME };
+const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
+
+const JWT_OPTIONS: {
+  algorithm: "HS256" | "RS256";
+  issuer: string;
+  privateKey: any;
+  publicKey: any;
+  jwtCookieName: string;
+} = {
+  algorithm: "RS256",
+  issuer: "ryupol",
+  privateKey: process.env.PRIVATE_KEY_BASE64 || "private",
+  publicKey: process.env.PRIVATE_KEY_BASE64 || "public",
+  jwtCookieName: "access_token",
+};
+JWT_OPTIONS.privateKey = Buffer.from(JWT_OPTIONS.privateKey, "base64");
+JWT_OPTIONS.publicKey = Buffer.from(JWT_OPTIONS.publicKey, "base64");
+
+export {
+  IS_PRODUCTION,
+  PORT,
+  MONGO_DB_URL,
+  CLIENT_URL,
+  LOG_SAVE_LEVEL,
+  BASE_PATH,
+  APP_NAME,
+  SALT_ROUNDS,
+  JWT_OPTIONS,
+};

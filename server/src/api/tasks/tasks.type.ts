@@ -1,9 +1,5 @@
-type TaskStatus = "TODO" | "IN_PROGRESS" | "DONE";
-
-interface Task {
-  id: number;
+export interface Task {
+  id?: number;
   title: string;
-  status: TaskStatus;
+  status: "TODO" | "IN_PROGRESS" | "DONE";
 }
-
-export { Task };

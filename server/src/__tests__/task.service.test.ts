@@ -4,7 +4,7 @@ import {
   updateTaskService,
   deleteTaskService,
 } from "../api/tasks/tasks.service";
-import TaskModel from "../api/tasks/task.schema";
+import TaskModel from "../api/tasks/tasks.schema";
 import { Task } from "../api/tasks/tasks.type";
 
 jest.mock("../api/tasks/task.schema");
@@ -13,7 +13,7 @@ describe("Task Service", () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  
+
   test("should get all tasks", async () => {
     // Given
     const mockResponse = {

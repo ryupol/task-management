@@ -1,5 +1,5 @@
 import { Task } from "./tasks.type";
-import TaskModel from "./task.schema";
+import TaskModel from "./tasks.schema";
 import logger from "../../configs/log.config";
 
 export const getTasksService = async () => {
@@ -8,7 +8,7 @@ export const getTasksService = async () => {
   return tasks;
 };
 
-export const createTaskService = async (task: Omit<Task, "id">) => {
+export const createTaskService = async (task: Task) => {
   logger.debug({ task });
   const newTask = new TaskModel({
     title: task.title,
@@ -25,7 +25,7 @@ export const updateTaskService = async ({
   data,
 }: {
   taskId: string | number;
-  data: Omit<Task, "id">;
+  data: Task;
 }) => {
   logger.debug({ taskId, data });
   const updatedTask = await TaskModel.findByIdAndUpdate(taskId, data, {

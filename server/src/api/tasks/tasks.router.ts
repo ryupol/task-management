@@ -1,6 +1,6 @@
 import express from "express";
 import { schemaValidator } from "../../middleware/validator";
-import { createTaskSchema, updateTaskSchema } from "./task.validator";
+import { createTaskSchema, updateTaskSchema } from "./tasks.validator";
 import {
   createTask,
   deleteTask,
